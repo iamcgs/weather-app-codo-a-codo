@@ -12,7 +12,7 @@ function Navbar() {
 
   return (
     <nav className="mx-auto bg-slate-100 px-5 drop-shadow-md dark:bg-slate-700 sm:px-10">
-      <div className="mx-auto flex items-center justify-between py-6 md:max-w-[700px] md:py-10">
+      <div className="mx-auto flex items-center justify-between py-6 md:max-w-[700px]">
         <div className="flex items-center gap-2 text-cyan-700 dark:text-white">
           <TiWeatherPartlySunny size={48} />
           <h1 className="pt-2 text-2xl font-bold tracking-wide sm:text-3xl ">
