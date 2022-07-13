@@ -16,7 +16,7 @@ function Navbar() {
         <div className="flex items-center gap-2 text-cyan-700 dark:text-white">
           <TiWeatherPartlySunny size={48} />
           <h1 className="pt-2 text-2xl font-bold tracking-wide sm:text-3xl ">
-            Weather
+            aclim<span className="text-orange-400">APP</span>tate
           </h1>
         </div>
         <div className="cursor-pointer pt-3 " onClick={handleDarkMode}>
