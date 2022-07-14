@@ -5,42 +5,36 @@ import SearchCity from './components/SearchCity';
 import WeatherInfo from './components/WeatherInfo';
 
 function App() {
-  const weatherData = {
-    location: {
-      name: 'Pergamino',
-      region: 'Buenos Aires',
-      country: 'Argentina',
-      lat: -33.89,
-      lon: -60.57,
-      tz_id: 'America/Argentina/Buenos_Aires',
-      localtime_epoch: 1657658767,
-      localtime: '2022-07-12 17:46',
-    },
-    current: {
-      last_updated: '2022-07-12 17:45',
-      temp_c: 14.4,
-      temp_f: 57.9,
-      is_day: 1,
-      condition: {
-        text: 'Soleado',
-        icon: '//cdn.weatherapi.com/weather/64x64/day/113.png',
-      },
-      wind_mph: 8.9,
-      wind_kph: 14.4,
-      humidity: 33,
-      feelslike_c: 13.4,
-      feelslike_f: 56.1,
-      uv: 4.0,
-    },
-  };
+  const [weatherData, setWeatherData] = useState(null);
+  const [city, setCity] = useState('');
   const [metric, setMetric] = useState('celsius');
+
+  const handleSearchCity = (e) => {
+    e.preventDefault();
+    const fetchWeather = async () => {
+      const url = `https://api.weatherapi.com/v1/forecast.json?key=df32ee2b370245bcba1122918221107&q=${city}&days=5&aqi=no&alerts=no&lang=es`;
+      const response = await fetch(url);
+      const data = await response.json();
+      if (data.error) {
+        console.log('error fetching data');
+      } else {
+        setWeatherData(data);
+        setCity('');
+      }
+    };
+    fetchWeather();
+  };
 
   return (
     <>
       <Navbar />
       <main className="mx-auto mt-8 mb-24 max-w-[500px] px-10 sm:max-w-[700px] sm:px-20">
         <Metric metric={metric} setMetric={setMetric} />
-        <SearchCity />
+        <SearchCity
+          setCity={setCity}
+          city={city}
+          handleSearchCity={handleSearchCity}
+        />
         <WeatherInfo weatherData={weatherData} metric={metric} />
       </main>
     </>
