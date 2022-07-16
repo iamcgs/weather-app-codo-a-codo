@@ -8,6 +8,8 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState('');
   const [metric, setMetric] = useState('celsius');
+  const [notFound, setNotFound] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSearchCity = (e) => {
     e.preventDefault();
@@ -16,10 +18,22 @@ function App() {
       const response = await fetch(url);
       const data = await response.json();
       if (data.error) {
-        console.log('error fetching data');
-      } else {
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+          setCity('');
+        }, 3000);
+        // console.log('error fetching data');
+      } else if (city.toLowerCase() === data.location.name.toLowerCase()) {
         setWeatherData(data);
         setCity('');
+      } else {
+        setNotFound(true);
+        setWeatherData(null);
+        setTimeout(() => {
+          setNotFound(false);
+          setCity('');
+        }, 3000);
       }
     };
     fetchWeather();
@@ -34,6 +48,8 @@ function App() {
           setCity={setCity}
           city={city}
           handleSearchCity={handleSearchCity}
+          notFound={notFound}
+          error={error}
         />
         <WeatherInfo weatherData={weatherData} metric={metric} />
       </main>
