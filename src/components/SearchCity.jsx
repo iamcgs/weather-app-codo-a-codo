@@ -27,7 +27,8 @@ function SearchCity({ city, setCity, handleSearchCity, notFound, error }) {
       </form>
       {(notFound || error) && (
         <h3 className="font-semibold italic text-red-500">
-          "{city}" no se encontró. Por favor, intenta nuevamente.
+          "{city.charAt(0).toUpperCase() + city.slice(1).toLowerCase()}" no se
+          encontró. Por favor, intenta nuevamente.
         </h3>
       )}
     </>
