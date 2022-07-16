@@ -26,9 +26,9 @@ function WeatherInfo({ weatherData, metric }) {
                 alt={weatherData.location.name}
               />
             </div>
-            <div className="flex flex-col items-center gap-2">
+            <div className="">
               {metric === 'celsius' ? (
-                <span className="text-5xl font-bold tracking-widest drop-shadow-sm sm:text-7xl">
+                <span className="text-5xl font-bold drop-shadow-sm sm:text-7xl">
                   {Math.round(weatherData.current.temp_c)}°C
                 </span>
               ) : (
