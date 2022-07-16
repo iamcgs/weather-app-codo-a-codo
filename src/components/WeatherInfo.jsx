@@ -141,21 +141,41 @@ function WeatherInfo({ weatherData, metric }) {
                 />
               </span>
               <div className="ml-auto flex items-center justify-center gap-2 text-xs tracking-wide text-slate-200 sm:text-sm">
-                <span>
-                  Min:{' '}
-                  {Math.round(
-                    weatherData.forecast.forecastday[0].day.mintemp_c
-                  )}
-                  °C
-                </span>
+                {metric === 'celsius' ? (
+                  <span>
+                    Min:{' '}
+                    {Math.round(
+                      weatherData.forecast.forecastday[0].day.mintemp_c
+                    )}
+                    °C
+                  </span>
+                ) : (
+                  <span>
+                    Min:{' '}
+                    {Math.round(
+                      weatherData.forecast.forecastday[0].day.mintemp_f
+                    )}
+                    °F
+                  </span>
+                )}
                 <span>|</span>
-                <span>
-                  Máx:
-                  {Math.round(
-                    weatherData.forecast.forecastday[0].day.maxtemp_c
-                  )}
-                  °C
-                </span>
+                {metric === 'celsius' ? (
+                  <span>
+                    Máx:{' '}
+                    {Math.round(
+                      weatherData.forecast.forecastday[0].day.maxtemp_c
+                    )}
+                    °C
+                  </span>
+                ) : (
+                  <span>
+                    Máx:{' '}
+                    {Math.round(
+                      weatherData.forecast.forecastday[0].day.maxtemp_f
+                    )}
+                    °F
+                  </span>
+                )}
               </div>
             </div>
             <div className="flex w-full items-center justify-between rounded-md bg-cyan-400/30 py-2 px-6 text-slate-200 drop-shadow-md dark:bg-slate-500/20">
@@ -168,21 +188,41 @@ function WeatherInfo({ weatherData, metric }) {
                 />
               </span>
               <div className="ml-auto flex items-center justify-center gap-2 text-xs tracking-wide text-slate-200 sm:text-sm">
-                <span>
-                  Min:{' '}
-                  {Math.round(
-                    weatherData.forecast.forecastday[1].day.mintemp_c
-                  )}
-                  °C
-                </span>
+                {metric === 'celsius' ? (
+                  <span>
+                    Min:{' '}
+                    {Math.round(
+                      weatherData.forecast.forecastday[0].day.mintemp_c
+                    )}
+                    °C
+                  </span>
+                ) : (
+                  <span>
+                    Min:{' '}
+                    {Math.round(
+                      weatherData.forecast.forecastday[0].day.mintemp_f
+                    )}
+                    °F
+                  </span>
+                )}
                 <span>|</span>
-                <span>
-                  Máx:
-                  {Math.round(
-                    weatherData.forecast.forecastday[1].day.maxtemp_c
-                  )}
-                  °C
-                </span>
+                {metric === 'celsius' ? (
+                  <span>
+                    Máx:{' '}
+                    {Math.round(
+                      weatherData.forecast.forecastday[1].day.maxtemp_c
+                    )}
+                    °C
+                  </span>
+                ) : (
+                  <span>
+                    Máx:{' '}
+                    {Math.round(
+                      weatherData.forecast.forecastday[1].day.maxtemp_f
+                    )}
+                    °F
+                  </span>
+                )}
               </div>
             </div>
           </div>
