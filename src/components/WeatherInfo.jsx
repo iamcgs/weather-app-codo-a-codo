@@ -101,7 +101,7 @@ function WeatherInfo({ weatherData, metric }) {
           <div className="flex w-full flex-col items-center gap-2 py-3 text-slate-200">
             <span className="text-xs">Índice UV</span>
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-green-400 via-yellow-500 to-purple-600">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500 text-2xl font-semibold">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500 text-2xl font-semibold dark:bg-slate-600">
                 {weatherData.current.uv}
               </span>
             </span>
