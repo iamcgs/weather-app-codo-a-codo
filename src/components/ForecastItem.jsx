@@ -1,5 +1,4 @@
 import React from 'react';
-// import Rain from '../images/281.png';
 
 function ForecastItem({ weatherData, metric, dayNumber, dayName }) {
   return (
