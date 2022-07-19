@@ -123,7 +123,7 @@ function WeatherInfo({ weatherData, metric }) {
               {metric === 'celsius' ? (
                 <span>{Math.round(weatherData.current.feelslike_c)}°C</span>
               ) : (
-                <span>{Math.round(weatherData.current.feelslike_c)}°F</span>
+                <span>{Math.round(weatherData.current.feelslike_f)}°F</span>
               )}
               <span>ST</span>
             </div>
