@@ -44,7 +44,7 @@ function WeatherInfo({ weatherData, metric }) {
                 {weatherData.current.condition.text}
               </span>
               <img
-                className="-my-2 h-[96px] w-[96px] md:h-[96px] md:w-[96px]"
+                className="-my-2 mt-2 h-[96px] w-[96px] md:h-[96px] md:w-[96px]"
                 src={weatherData.current.condition.icon}
                 alt={weatherData.location.name}
               />
