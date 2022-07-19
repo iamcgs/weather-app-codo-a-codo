@@ -35,7 +35,7 @@ function WeatherInfo({ weatherData, metric }) {
             {weatherData.location.name}
           </h2>
           <div className="-mt-2 text-center text-xs text-white sm:text-sm ">
-            <span>{weatherData.location.region}, </span>
+            {/* <span>{weatherData.location.region}, </span> */}
             <span>{weatherData.location.country}</span>
           </div>
           <div className="leading-11 flex flex-col items-center justify-center text-white sm:gap-2">
