@@ -4,7 +4,7 @@ import React from 'react';
 function ForecastItem({ weatherData, metric, dayNumber, dayName }) {
   return (
     <div className="flex w-full items-center justify-between rounded-md bg-cyan-400/30 py-4 px-6 text-slate-200 drop-shadow-md dark:bg-slate-500/20">
-      <span className="w-12 text-sm sm:text-base">{dayName}</span>
+      <span className="w-12 text-xs sm:text-base">{dayName}</span>
       <div className="ml-auto flex items-center justify-center gap-2 text-sm tracking-wide text-slate-200 sm:text-base">
         {metric === 'celsius' ? (
           <span>
