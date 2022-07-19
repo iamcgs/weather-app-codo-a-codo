@@ -1,6 +1,30 @@
 import React from 'react';
+import ForecastItem from './ForecastItem';
 
 function WeatherInfo({ weatherData, metric }) {
+  // Set day name to display in forecast
+
+  // Today's date
+  const today = new Date();
+
+  // Today's date + 1
+  const dayPlusOne = new Date(today);
+  dayPlusOne.setDate(dayPlusOne.getDate() + 1);
+  let dayPlusOneName = dayPlusOne.toLocaleString('es-ar', {
+    weekday: 'long',
+  });
+  dayPlusOneName =
+    dayPlusOneName.charAt(0).toUpperCase() + dayPlusOneName.slice(1);
+
+  // Today's date + 2
+  const dayPlusTwo = new Date(today);
+  dayPlusTwo.setDate(dayPlusTwo.getDate() + 2);
+  let dayPlusTwoName = dayPlusTwo.toLocaleString('es-ar', {
+    weekday: 'long',
+  });
+  dayPlusTwoName =
+    dayPlusTwoName.charAt(0).toUpperCase() + dayPlusTwoName.slice(1);
+
   return (
     <>
       {weatherData === null ? (
@@ -10,8 +34,7 @@ function WeatherInfo({ weatherData, metric }) {
           <h2 className="mb-2 px-10 text-center text-2xl font-bold tracking-wider text-white sm:text-4xl">
             {weatherData.location.name}
           </h2>
-
-          <div className="-mt-2 text-xs text-white sm:text-sm ">
+          <div className="-mt-2 text-center text-xs text-white sm:text-sm ">
             <span>{weatherData.location.region}, </span>
             <span>{weatherData.location.country}</span>
           </div>
@@ -52,186 +75,43 @@ function WeatherInfo({ weatherData, metric }) {
               </span>
             </div>
           </div>
-          <div className="mt-2 flex h-auto w-full items-center justify-between rounded-md bg-cyan-300/30 p-4 drop-shadow-md">
-            <div className="flex flex-col items-center justify-between gap-2 text-xs text-white">
-              <span>Ahora</span>
-              <span>
-                <img
-                  src={weatherData.current.condition.icon}
-                  alt="/"
-                  className="-my-2 h-[24px] w-[24px] "
-                />
-              </span>
-              <span className="tracking-wide">
-                {weatherData.current.temp_c}°C
-              </span>
-            </div>
-            <div className="flex flex-col items-center justify-between gap-2 text-xs text-white">
-              <span>
-                {weatherData.forecast.forecastday[0].hour[0].time.split(' ')[1]}
-              </span>
-              <span>
-                <img
-                  src={weatherData.current.condition.icon}
-                  alt="/"
-                  className="-my-2 h-[24px] w-[24px] "
-                />
-              </span>
-              <span className="tracking-wide">
-                {weatherData.current.temp_c}°C
-              </span>
-            </div>
-            <div className="flex flex-col items-center justify-between gap-2 text-xs text-white">
-              <span>
-                {' '}
-                {weatherData.forecast.forecastday[0].hour[1].time.split(' ')[1]}
-              </span>
-              <span>
-                <img
-                  src={weatherData.current.condition.icon}
-                  alt="/"
-                  className="-my-2 h-[24px] w-[24px] "
-                />
-              </span>
-              <span className="tracking-wide">
-                {weatherData.current.temp_c}°C
-              </span>
-            </div>
-            <div className="flex flex-col items-center justify-between gap-2 text-xs text-white">
-              <span>
-                {' '}
-                {weatherData.forecast.forecastday[0].hour[2].time.split(' ')[1]}
-              </span>
-              <span>
-                <img
-                  src={weatherData.current.condition.icon}
-                  alt="/"
-                  className="-my-2 h-[24px] w-[24px] "
-                />
-              </span>
-              <span className="tracking-wide">
-                {weatherData.current.temp_c}°C
-              </span>
-            </div>
-            <div className="flex flex-col items-center justify-between gap-2 text-xs text-white">
-              <span>
-                {' '}
-                {weatherData.forecast.forecastday[0].hour[3].time.split(' ')[1]}
-              </span>
-              <span>
-                <img
-                  src={weatherData.current.condition.icon}
-                  alt="/"
-                  className="-my-2 h-[24px] w-[24px] "
-                />
-              </span>
-              <span className="tracking-wide">
-                {weatherData.current.temp_c}°C
-              </span>
-            </div>
-          </div>
           <div className="mt-4 flex w-full flex-col gap-2">
-            <div className="flex w-full items-center justify-between rounded-md bg-cyan-400/30 py-2 px-6 text-slate-200 drop-shadow-md dark:bg-slate-500/20">
-              <span className="w-12 text-xs">Hoy</span>
-              <span>
-                <img
-                  className="h-[24px] w-[24px] md:h-[32px] md:w-[32px]"
-                  src={weatherData.current.condition.icon}
-                  alt={weatherData.location.name}
-                />
-              </span>
-              <div className="ml-auto flex items-center justify-center gap-2 text-xs tracking-wide text-slate-200 sm:text-sm">
-                {metric === 'celsius' ? (
-                  <span>
-                    Min:{' '}
-                    {Math.round(
-                      weatherData.forecast.forecastday[0].day.mintemp_c
-                    )}
-                    °C
-                  </span>
-                ) : (
-                  <span>
-                    Min:{' '}
-                    {Math.round(
-                      weatherData.forecast.forecastday[0].day.mintemp_f
-                    )}
-                    °F
-                  </span>
-                )}
-                <span>|</span>
-                {metric === 'celsius' ? (
-                  <span>
-                    Máx:{' '}
-                    {Math.round(
-                      weatherData.forecast.forecastday[0].day.maxtemp_c
-                    )}
-                    °C
-                  </span>
-                ) : (
-                  <span>
-                    Máx:{' '}
-                    {Math.round(
-                      weatherData.forecast.forecastday[0].day.maxtemp_f
-                    )}
-                    °F
-                  </span>
-                )}
-              </div>
-            </div>
-            <div className="flex w-full items-center justify-between rounded-md bg-cyan-400/30 py-2 px-6 text-slate-200 drop-shadow-md dark:bg-slate-500/20">
-              <span className="w-12 text-xs">Mañana</span>
-              <span>
-                <img
-                  className="h-[24px] w-[24px] md:h-[32px] md:w-[32px]"
-                  src={weatherData.current.condition.icon}
-                  alt={weatherData.location.name}
-                />
-              </span>
-              <div className="ml-auto flex items-center justify-center gap-2 text-xs tracking-wide text-slate-200 sm:text-sm">
-                {metric === 'celsius' ? (
-                  <span>
-                    Min:{' '}
-                    {Math.round(
-                      weatherData.forecast.forecastday[0].day.mintemp_c
-                    )}
-                    °C
-                  </span>
-                ) : (
-                  <span>
-                    Min:{' '}
-                    {Math.round(
-                      weatherData.forecast.forecastday[0].day.mintemp_f
-                    )}
-                    °F
-                  </span>
-                )}
-                <span>|</span>
-                {metric === 'celsius' ? (
-                  <span>
-                    Máx:{' '}
-                    {Math.round(
-                      weatherData.forecast.forecastday[1].day.maxtemp_c
-                    )}
-                    °C
-                  </span>
-                ) : (
-                  <span>
-                    Máx:{' '}
-                    {Math.round(
-                      weatherData.forecast.forecastday[1].day.maxtemp_f
-                    )}
-                    °F
-                  </span>
-                )}
-              </div>
-            </div>
+            <h3 className="ml-1 text-xs text-orange-200 sm:text-sm">
+              Pronóstico extendido 48hs
+            </h3>
+            <ForecastItem
+              weatherData={weatherData}
+              metric={metric}
+              dayNumber={0}
+              dayName={'Hoy'}
+            />
+            <ForecastItem
+              weatherData={weatherData}
+              metric={metric}
+              dayNumber={1}
+              dayName={dayPlusOneName}
+            />
+            <ForecastItem
+              weatherData={weatherData}
+              metric={metric}
+              dayNumber={2}
+              dayName={dayPlusTwoName}
+            />
           </div>
-          <div className="mt-8 grid w-full gap-2 rounded-lg py-3 text-white sm:grid-cols-3 sm:justify-between sm:bg-cyan-400/50 sm:px-2 sm:drop-shadow-md sm:dark:bg-slate-500/50">
+          <div className="flex w-full flex-col items-center gap-2 py-3 text-slate-200">
+            <span className="text-xs">Índice UV</span>
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-green-400 via-yellow-500 to-purple-600">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500 text-2xl font-semibold">
+                {weatherData.current.uv}
+              </span>
+            </span>
+          </div>
+          <div className="grid w-full gap-2 rounded-lg py-3 text-white sm:grid-cols-3 sm:justify-between sm:bg-cyan-400/50 sm:px-2 sm:drop-shadow-md sm:dark:bg-slate-500/50">
             <div className="info-details">
               {metric === 'celsius' ? (
-                <span>{weatherData.current.wind_kph} km/h</span>
+                <span>{weatherData.current.wind_kph} KM/H</span>
               ) : (
-                <span>{weatherData.current.wind_mph} mph</span>
+                <span>{weatherData.current.wind_mph} MP/H</span>
               )}
               <span>Viento</span>
             </div>
@@ -248,7 +128,7 @@ function WeatherInfo({ weatherData, metric }) {
               <span>ST</span>
             </div>
           </div>
-          <div className="text-center text-[8px] italic tracking-wide text-slate-200">
+          <div className="mt-2 text-center text-[8px] italic tracking-wide text-slate-200">
             Actualizado: {weatherData.current.last_updated}
           </div>
         </section>

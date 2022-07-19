@@ -10,6 +10,7 @@ function App() {
   const [metric, setMetric] = useState('celsius');
   const [notFound, setNotFound] = useState(false);
   const [error, setError] = useState(false);
+  const [emptyCity, setEmptyCity] = useState(false);
 
   const handleSearchCity = (e) => {
     e.preventDefault();
@@ -17,21 +18,30 @@ function App() {
       const url = `https://api.weatherapi.com/v1/forecast.json?key=df32ee2b370245bcba1122918221107&q=${city}&days=5&aqi=no&alerts=no&lang=es`;
       const response = await fetch(url);
       const data = await response.json();
-      if (data.error) {
-        setError(true);
-        setTimeout(() => {
-          setError(false);
+      if (city !== '') {
+        if (data.error) {
+          setError(true);
+          setTimeout(() => {
+            setError(false);
+            setCity('');
+          }, 3000);
+          // console.log('error fetching data');
+        } else if (city.toLowerCase() === data.location.name.toLowerCase()) {
+          setWeatherData(data);
           setCity('');
-        }, 3000);
-        // console.log('error fetching data');
-      } else if (city.toLowerCase() === data.location.name.toLowerCase()) {
-        setWeatherData(data);
-        setCity('');
+        } else {
+          setNotFound(true);
+          setWeatherData(null);
+          setTimeout(() => {
+            setNotFound(false);
+            setCity('');
+          }, 3000);
+        }
       } else {
-        setNotFound(true);
+        setEmptyCity(true);
         setWeatherData(null);
         setTimeout(() => {
-          setNotFound(false);
+          setEmptyCity(false);
           setCity('');
         }, 3000);
       }
@@ -50,6 +60,7 @@ function App() {
           handleSearchCity={handleSearchCity}
           notFound={notFound}
           error={error}
+          emptyCity={emptyCity}
         />
         <WeatherInfo weatherData={weatherData} metric={metric} />
       </main>

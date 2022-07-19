@@ -1,7 +1,14 @@
 import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-function SearchCity({ city, setCity, handleSearchCity, notFound, error }) {
+function SearchCity({
+  city,
+  setCity,
+  handleSearchCity,
+  notFound,
+  error,
+  emptyCity,
+}) {
   const handleChange = (e) => {
     setCity(e.target.value);
   };
@@ -29,6 +36,11 @@ function SearchCity({ city, setCity, handleSearchCity, notFound, error }) {
         <h3 className="font-semibold italic text-red-500">
           "{city.charAt(0).toUpperCase() + city.slice(1).toLowerCase()}" no se
           encontró. Por favor, intenta nuevamente.
+        </h3>
+      )}
+      {emptyCity && (
+        <h3 className="font-semibold italic text-red-500">
+          Por favor, ingresa una ciudad para realizar la búsqueda.
         </h3>
       )}
     </>
