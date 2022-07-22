@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Footer from './components/Footer';
 import Metric from './components/Metric';
 import Navbar from './components/Navbar';
 import SearchCity from './components/SearchCity';
@@ -52,7 +53,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto mt-8 mb-24 max-w-[500px] px-10 sm:max-w-[700px] sm:px-20">
+      <main className="mx-auto mt-8 mb-8 max-w-[500px] px-10 sm:max-w-[700px] sm:px-20">
         <Metric metric={metric} setMetric={setMetric} />
         <SearchCity
           setCity={setCity}
@@ -64,6 +65,7 @@ function App() {
         />
         <WeatherInfo weatherData={weatherData} metric={metric} />
       </main>
+      <Footer />
     </>
   );
 }
